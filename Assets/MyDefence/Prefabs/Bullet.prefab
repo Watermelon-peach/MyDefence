@@ -122,3 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 30
+  bulletImpactPrefab: {fileID: 7455203589174767428, guid: 5a4cf7f05f410f141be3c798e4897f09, type: 3}
