@@ -33,7 +33,7 @@ namespace MyDefence
 
         //타워 프리팹
         public GameObject machineGunPrefab;
-        public GameObject machineGunPrefab2;
+        public GameObject rocketTowerPrefab;
         #endregion
 
         private void Start()
