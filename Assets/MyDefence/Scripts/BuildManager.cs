@@ -29,7 +29,10 @@ namespace MyDefence
 
         #region Field
         //타일에 설치할 타워 프리팹 오브젝트를 저장하는 변수
-        private GameObject towerToBuild;
+        private TowerBluePrint towerToBuild;
+
+        //타일에 설치할 타워의 건설 비용
+        private int buildCost;
 
         //타워 프리팹
         //public GameObject machineGunPrefab;
@@ -41,17 +44,18 @@ namespace MyDefence
             //초기화
             //towerToBuild = machineGunPrefab;
         }
-        //타일에 설치할 타워 프리팹 오브젝트 얻어오기
-        public GameObject GetTowerToBuild()
+        //타일에 설치할 타워 wjdqhfmf 얻어오기
+        public TowerBluePrint GetTowerToBuild()
         {
             return towerToBuild;
         }
 
         //타일에 설치할 타워 프리팹 오브젝트 저장하기
-        public void SetTowerToBuild(GameObject tower)
+        public void SetTowerToBuild(TowerBluePrint tower)
         {
             towerToBuild = tower;
         }
+
     }
 
 }

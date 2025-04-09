@@ -22,6 +22,9 @@ namespace MyDefence
 
         //타일에 설치한 타워 오브젝트
         private GameObject tower;
+
+        //타일에 설치한 타워의 정보
+        private TowerBluePrint bluePrint;
         #endregion
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -62,11 +65,23 @@ namespace MyDefence
                 Debug.Log("타워를 설치할 수 없습니다");
                 return;
             }
-            //Debug.Log("이 스크립트가 붙어있는 타일 위에 터렛을 설치");
-            tower = Instantiate(BuildManager.Instance.GetTowerToBuild(), this.transform.position, Quaternion.identity);
+
+            int buildCost = buildManager.GetTowerToBuild().cost;
+
+            //돈 계산
+            if(PlayerStats.UseMoney(buildCost))
+            {
+                bluePrint = buildManager.GetTowerToBuild();
+
+                //Debug.Log("이 스크립트가 붙어있는 타일 위에 터렛을 설치");
+                tower = Instantiate(bluePrint.towerPrefab, this.transform.position, Quaternion.identity);
+            }
+            
 
             //초기화 - 저장된 타워 프리팹 초기화
             buildManager.SetTowerToBuild(null);
+
+            Debug.Log($"남은 돈: {PlayerStats.Money}");
         }
 
         private void OnMouseEnter()

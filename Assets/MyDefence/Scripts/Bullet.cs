@@ -47,8 +47,6 @@ namespace MyDefence
             //타격 이펙트 효과
             GameObject effectGo = Instantiate(bulletImpactPrefab, target.position, Quaternion.identity);
             Destroy(effectGo, 2f);
-
-            Debug.Log("끄앙");
             //타겟 킬
             Destroy(target.gameObject);
             //탄환 킬
