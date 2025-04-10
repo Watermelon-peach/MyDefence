@@ -10,9 +10,14 @@ namespace MyDefence
         //마우스를 올려놓으면 변하는 색깔
         //public Color hoverColor;
         public Material hoverMaterial;
+        //돈 없을 때
+        public Material noMoneyMaterial;
+
         //타일의 원래 색깔
         //private Color startColor;
         private Material startMaterial;
+
+        
 
         //타일의 Renderer
         private Renderer renderer;
@@ -25,7 +30,12 @@ namespace MyDefence
 
         //타일에 설치한 타워의 정보
         private TowerBluePrint bluePrint;
+
+        //타워 건설 이펙트 프리팹
+        public GameObject buildEffectPrefab;
         #endregion
+
+       
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -66,22 +76,35 @@ namespace MyDefence
                 return;
             }
 
+            //타워 건설
+            BuildTower();
+        }
+
+        //타워 건설
+        void BuildTower()
+        {
+            //건설비용 체크
+            if (buildManager.NotEnoughMoney)
+                return;
+
+            //건설할 타워의 정보를 저장
+            bluePrint = buildManager.GetTowerToBuild();
+
             int buildCost = buildManager.GetTowerToBuild().cost;
 
             //돈 계산
-            if(PlayerStats.UseMoney(buildCost))
-            {
-                bluePrint = buildManager.GetTowerToBuild();
+            PlayerStats.UseMoney(bluePrint.cost);
 
-                //Debug.Log("이 스크립트가 붙어있는 타일 위에 터렛을 설치");
-                tower = Instantiate(bluePrint.towerPrefab, this.transform.position, Quaternion.identity);
-            }
-            
+            //Debug.Log("이 스크립트가 붙어있는 타일 위에 터렛을 설치");
+            tower = Instantiate(bluePrint.towerPrefab, this.transform.position, Quaternion.identity);
+
+            //건설 이펙트 생성
+            GameObject effectGo = Instantiate(buildEffectPrefab, this.transform.position, Quaternion.Euler(-90f, 0f, 0f));
+            Destroy(effectGo, 2f);
+
 
             //초기화 - 저장된 타워 프리팹 초기화
             buildManager.SetTowerToBuild(null);
-
-            Debug.Log($"남은 돈: {PlayerStats.Money}");
         }
 
         private void OnMouseEnter()
@@ -92,13 +115,20 @@ namespace MyDefence
                 return;
             }
 
-            if (buildManager.GetTowerToBuild() == null)
+            if (buildManager.CannotBuild)
             {
                 //Debug.Log("타워를 선택하지 않았습니다");
                 return;
             }
+
+            //현재 타일에 타워가 있는지 체크
+            if (tower != null)
+            {
+                Debug.Log("타워를 설치할 수 없습니다");
+                return;
+            }
             //renderer.material.color = hoverColor;
-            renderer.material = hoverMaterial;
+            renderer.material = (buildManager.NotEnoughMoney) ? noMoneyMaterial : hoverMaterial;
         }
 
         private void OnMouseExit()

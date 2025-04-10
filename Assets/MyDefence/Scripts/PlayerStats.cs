@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MyDefence
 {
-    //플레이어의 속성들을 관리하는 클래스
+    //플레이어의 속성(데이터)들을 관리하는 클래스
     public class PlayerStats : MonoBehaviour
     {
         #region Field
@@ -10,8 +10,13 @@ namespace MyDefence
         private static int money;
 
         //초기 소지금
-        [SerializeField]
-        private int startMoney = 400;
+        [SerializeField] private int startMoney = 400;
+
+        //목숨
+        private static int lives;
+
+        //초기 목숨
+        [SerializeField] private int startLives = 10;
         #endregion
 
         #region Property
@@ -19,6 +24,12 @@ namespace MyDefence
         public static int Money
         {
             get { return money; }
+        }
+
+        //목숨 읽기 전용 속성
+        public static int Lives
+        {
+            get { return lives; }
         }
         #endregion
 
@@ -29,8 +40,13 @@ namespace MyDefence
             //초기 소지금 지급 400
             money = startMoney;
             Debug.Log($"소지금 {startMoney}원을 지급했습니다");
+
+            //초기 목숨
+            lives = startLives;
+            Debug.Log($"초기 체력 {startLives}");
         }
 
+        #region Money
         //벌기, 쓰기, 소지금 확인 함수 만들기
         public static void AddMoney(int amount)
         {
@@ -57,6 +73,30 @@ namespace MyDefence
             }
             return true;*/
         }
+        #endregion
+
+        #region Life
+        //목숨 회복
+        public static void AddLives(int amount)
+        {
+            lives += amount;
+        }
+
+        //목숨 소모
+        public static void UseLives(int amount)
+        {
+            lives -= amount;
+
+            if (lives <= 0)
+            {
+                lives = 0;
+                //게임오버
+                Debug.Log("꿱 Game Over");
+            }
+        }
+
+       
+        #endregion
     }
 
 }

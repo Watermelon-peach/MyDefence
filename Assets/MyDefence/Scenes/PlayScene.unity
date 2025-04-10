@@ -1520,6 +1520,7 @@ GameObject:
   - component: {fileID: 473746431}
   - component: {fileID: 473746433}
   - component: {fileID: 473746432}
+  - component: {fileID: 473746434}
   m_Layer: 5
   m_Name: EnergyText
   m_TagString: Untagged
@@ -1600,7 +1601,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 2048
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1645,6 +1646,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 473746430}
   m_CullTransparentMesh: 1
+--- !u!114 &473746434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473746430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d00586e5bc2014db8a524b9785e33c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyText: {fileID: 473746432}
 --- !u!1001 &496978893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1826,7 +1840,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: '99
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2041,6 +2057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMoney: 400
+  startLives: 10
 --- !u!4 &699156635
 Transform:
   m_ObjectHideFlags: 0
@@ -3205,6 +3222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271765515}
   - component: {fileID: 1271765516}
+  - component: {fileID: 1271765517}
   m_Layer: 5
   m_Name: PlayerStats
   m_TagString: Untagged
@@ -3259,6 +3277,19 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1271765517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271765514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bacd1be9c073dc6418c2548e3efdb277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesText: {fileID: 512352941}
 --- !u!1001 &1369813434
 PrefabInstance:
   m_ObjectHideFlags: 0

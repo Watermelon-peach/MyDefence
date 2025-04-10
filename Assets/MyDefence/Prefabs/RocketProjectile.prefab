@@ -252,5 +252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 50
   bulletImpactPrefab: {fileID: 8555763006542857392, guid: cc5de84dfee157347adebe56c6cb3b53, type: 3}
+  attackDamage: 100
   damageRange: 3.5
   enemyTag: Enemy

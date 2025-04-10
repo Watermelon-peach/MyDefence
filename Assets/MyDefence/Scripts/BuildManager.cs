@@ -39,6 +39,20 @@ namespace MyDefence
         //public GameObject rocketTowerPrefab;
         #endregion
 
+        #region Property
+        //타워 건설 비용을 체크: 부족하면 true
+        public bool NotEnoughMoney
+        {
+            get { return PlayerStats.Money < towerToBuild.cost; }
+        }
+
+        //건설할 타워가 있는지 체크, 건설할 타워를 선택하지 않았을 때
+        public bool CannotBuild
+        {
+            get { return towerToBuild == null; }
+        }
+        #endregion
+
         private void Start()
         {
             //초기화

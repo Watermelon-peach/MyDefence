@@ -122,3 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverMaterial: {fileID: 2100000, guid: e67dc582e0a7b4445af98d507b0804f3, type: 2}
+  noMoneyMaterial: {fileID: 2100000, guid: 86ee52fd6f9fafd4e91ef778644c10e4, type: 2}
+  buildEffectPrefab: {fileID: 3415420531564123216, guid: c481c431e85924d4a993662f478de6d0, type: 3}
