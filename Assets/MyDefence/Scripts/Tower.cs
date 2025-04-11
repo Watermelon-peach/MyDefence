@@ -9,7 +9,8 @@ namespace MyDefence
         //공격 범위
         public float attackRange = 7f;
 
-        private Transform target;
+        protected Transform target;
+        protected Enemy targetEnemy;
 
         //Enemy tag
         public string enemyTag = "Enemy";
@@ -38,7 +39,7 @@ namespace MyDefence
         void Start()
         {
             //UpdateTarget 함수를 즉시 0.5초마다 반복해서 호출한다
-            InvokeRepeating("UpdateTarget", 0f, 0.5f);
+            InvokeRepeating("UpdateTarget", 0f, 0.1f);
         }
 
 
@@ -67,14 +68,16 @@ namespace MyDefence
             if (nearEnemy != null && minDistance <= attackRange)
             {
                 target = nearEnemy.transform;
+                targetEnemy = target.GetComponent<Enemy>();
             }
             else
             {
                 target = null;
+                targetEnemy = null;
             }
         }
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
 
             //타겟이 없으면
@@ -109,7 +112,7 @@ namespace MyDefence
         }
 
         //타겟 조준
-        void LockOn()
+        protected void LockOn()
         {
             //터렛 헤드 회전
             Vector3 dir = target.position - this.transform.position;
