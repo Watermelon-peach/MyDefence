@@ -17,6 +17,7 @@ namespace MyDefence
 
         //초기 목숨
         [SerializeField] private int startLives = 10;
+
         #endregion
 
         #region Property
@@ -31,6 +32,9 @@ namespace MyDefence
         {
             get { return lives; }
         }
+
+        //라운드 카운트
+        public static int Rounds { get; set; }
         #endregion
 
         //소지금 초기값 400
@@ -39,11 +43,8 @@ namespace MyDefence
             //초기화
             //초기 소지금 지급 400
             money = startMoney;
-            Debug.Log($"소지금 {startMoney}원을 지급했습니다");
-
-            //초기 목숨
             lives = startLives;
-            Debug.Log($"초기 체력 {startLives}");
+            Rounds = 0;
         }
 
         #region Money
@@ -90,8 +91,6 @@ namespace MyDefence
             if (lives <= 0)
             {
                 lives = 0;
-                //게임오버
-                Debug.Log("꿱 Game Over");
             }
         }
 

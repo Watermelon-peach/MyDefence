@@ -82,7 +82,6 @@ namespace MyDefence
         public void TakeDamage(float damage)
         {
             health -= damage;
-            Debug.Log($"Now Health: {health}");
 
             //대미지 효과(VFX, SFX)
 
