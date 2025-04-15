@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3192242979582272556}
   - component: {fileID: 6954298695019803175}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bullet_L02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c34b46f6317057c48bdb2ea8baee1a53, type: 2}
+  - {fileID: 2100000, guid: 908413e03ac1a84478794c17b778f380, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,4 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 30
-  bulletImpactPrefab: {fileID: 7455203589174767428, guid: 5a4cf7f05f410f141be3c798e4897f09, type: 3}
+  bulletImpactPrefab: {fileID: 7455203589174767428, guid: 06364bfebb6a19547b04a8a0ba4ea541, type: 3}
+  attackDamage: 50

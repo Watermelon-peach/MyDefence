@@ -31,12 +31,10 @@ namespace MyDefence
         //타일에 설치할 타워 프리팹 오브젝트를 저장하는 변수
         private TowerBluePrint towerToBuild;
 
-        //타일에 설치할 타워의 건설 비용
-        private int buildCost;
+        public TileUI tileUI;
 
-        //타워 프리팹
-        //public GameObject machineGunPrefab;
-        //public GameObject rocketTowerPrefab;
+        //선택된 타일
+        private Tile selectTile;
         #endregion
 
         #region Property
@@ -70,6 +68,27 @@ namespace MyDefence
             towerToBuild = tower;
         }
 
+        //타워가 설치된 타일을 선택
+        public void SelectTile(Tile tile)
+        {
+            //같은 타일 선택하면 선택해제
+            //이전에 선택한 타일과 지금 선택한 타일이 같으면 선택해제
+            if(selectTile == tile)
+            {
+                DeselectTile();
+                return;
+            }
+
+            selectTile = tile;
+            tileUI.ShowTileUI(selectTile);
+        }
+
+        //선택된 타일 해제
+        public void DeselectTile()
+        {
+            tileUI.HideTileUI();
+            selectTile = null;
+        }
     }
 
 }

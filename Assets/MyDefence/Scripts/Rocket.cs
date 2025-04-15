@@ -21,7 +21,6 @@ namespace MyDefence
             Destroy(effectGo, 2f);
 
             //폭발
-            Debug.Log("펑");
             Explosion();
             
             //탄환 킬
