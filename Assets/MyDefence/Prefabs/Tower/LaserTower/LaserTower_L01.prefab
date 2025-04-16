@@ -10220,7 +10220,7 @@ GameObject:
   - component: {fileID: 221696730150992983}
   - component: {fileID: 7946045006926719516}
   m_Layer: 10
-  m_Name: LaserTower
+  m_Name: LaserTower_L01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

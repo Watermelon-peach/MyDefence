@@ -66,6 +66,7 @@ namespace MyDefence
         public void SetTowerToBuild(TowerBluePrint tower)
         {
             towerToBuild = tower;
+            DeselectTile();
         }
 
         //타워가 설치된 타일을 선택
