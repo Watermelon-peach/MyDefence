@@ -128,6 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 14592062}
+  - component: {fileID: 14592063}
   m_Layer: 10
   m_Name: FirePoint
   m_TagString: Untagged
@@ -151,6 +152,20 @@ Transform:
   - {fileID: 8850261284547760083}
   m_Father: {fileID: 1205505948}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &14592063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14592061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e091cbac0d50abd49a3ce2f012111209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystemToPlay: {fileID: 6732536153921299275}
+  interval: 6
 --- !u!1 &188026288
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3f04bc07cb28844843154b5dbef6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: PlayScene
 --- !u!4 &1204760435
 Transform:
   m_ObjectHideFlags: 0
@@ -889,6 +905,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205505948}
+  - component: {fileID: 1205505949}
   m_Layer: 10
   m_Name: PartToRotate
   m_TagString: Untagged
@@ -913,6 +930,19 @@ Transform:
   - {fileID: 14592062}
   m_Father: {fileID: 820355088069427115}
   m_LocalEulerAnglesHint: {x: 0, y: 212.3, z: 0}
+--- !u!114 &1205505949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205505947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85e5e2f08077604aaef620d417d1c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1228105406
 GameObject:
   m_ObjectHideFlags: 0
@@ -30852,6 +30882,7 @@ GameObject:
   - component: {fileID: 8159032397385058607}
   - component: {fileID: 3723748912801523026}
   - component: {fileID: 1580163169305616749}
+  - component: {fileID: 8159032397385058608}
   m_Layer: 10
   m_Name: EneryPylon_PFX
   m_TagString: Untagged
@@ -40411,7 +40442,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -54611,6 +54642,20 @@ Transform:
   - {fileID: 1118732728684046022}
   m_Father: {fileID: 6069104111823899105}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &8159032397385058608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5253865029833695254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e091cbac0d50abd49a3ce2f012111209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystemToPlay: {fileID: 3723748912801523026}
+  interval: 2
 --- !u!1 &8192211759426238801
 GameObject:
   m_ObjectHideFlags: 0

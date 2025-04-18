@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 namespace MyDefence
 {
     public class Enemy : MonoBehaviour
@@ -8,7 +8,7 @@ namespace MyDefence
         #region Field
         //체력
         private float health;
-
+        
         //체력 초기값
         [SerializeField]private float startHealth = 100f;
 
@@ -29,6 +29,12 @@ namespace MyDefence
 
         //죽음 이펙트 프리팹
         public GameObject deathEffectPrefab;
+
+        //체력바 UI
+        private bool isTakeDamage = false;
+        public GameObject healthBarUI;
+        public Image healthBarImage;
+
         #endregion
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,6 +45,7 @@ namespace MyDefence
             target = WayPoints.wayPoints[wayPointIndex];
             health = startHealth;
             startMoveSpeed = moveSpeed;
+            isTakeDamage = false;
         }
 
         // Update is called once per frame
@@ -59,6 +66,8 @@ namespace MyDefence
 
             //속도 원복
             moveSpeed = startMoveSpeed;
+
+           
         }
 
         //다음 타겟 포지션 얻어오기
@@ -84,6 +93,8 @@ namespace MyDefence
             health -= damage;
 
             //대미지 효과(VFX, SFX)
+            //체력바 UI
+            healthBarImage.fillAmount = health / startHealth;
 
             //죽음 체크
             if (health <= 0f)
