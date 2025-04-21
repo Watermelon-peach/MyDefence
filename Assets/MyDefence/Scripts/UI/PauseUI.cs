@@ -6,6 +6,10 @@ namespace MyDefence
     public class PauseUI : MonoBehaviour
     {
         #region Field
+        //씬페이더
+        public SceneFader fader;
+        [SerializeField]
+        private string sceneToLoad = "MainMenu";
         //UI 오브젝트
         public GameObject pauseUI;
         #endregion
@@ -28,12 +32,15 @@ namespace MyDefence
         {
             Time.timeScale = 1f;
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);   //빌드 인덱스로 로드
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);   //빌드 인덱스로 로드
+            fader.FadeTo(SceneManager.GetActiveScene().name);
         }
 
         public void MenuButton()
         {
-            Debug.Log("Goto Menu");
+            Time.timeScale = 1f;
+
+            fader.FadeTo(sceneToLoad);
         }
 
     }

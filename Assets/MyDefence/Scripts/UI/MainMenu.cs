@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace MyDefence
 {
@@ -7,6 +6,7 @@ namespace MyDefence
     {
         #region Field
         [SerializeField] private string sceneToLoad = "PlayScene";
+        public SceneFader fader;
         #endregion
 
         private void Start()
@@ -16,7 +16,7 @@ namespace MyDefence
 
         public void Play()
         {
-            SceneManager.LoadScene(sceneToLoad);
+            fader.FadeTo(sceneToLoad);
         }
 
         public void Quit()

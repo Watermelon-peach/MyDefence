@@ -21,6 +21,9 @@ namespace MyDefence
         private float titleTimer = 2f;
         private float timeCount;
 
+        //씬 페이더
+        public SceneFader fader;
+
         //======================Sample======================
         private bool isOneTime = false; //실행 안 했으면 false, 한버이라도 실행했으면 true
         [SerializeField]
@@ -97,7 +100,7 @@ namespace MyDefence
 
         private void GotoMenu()
         {
-            SceneManager.LoadScene(sceneToLoad);
+            fader.FadeTo(sceneToLoad);
         }
 
         IEnumerator GameStart()

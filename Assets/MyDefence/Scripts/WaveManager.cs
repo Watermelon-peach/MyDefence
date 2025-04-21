@@ -8,11 +8,17 @@ namespace MyDefence
     public class WaveManager : MonoBehaviour
     {
         #region Field
+        //현재 게임 화면에서 살아있는 enemy 숫자
+        public static int enemyAlive = 0;
+
+        //웨이브 데이터 세팅 : 적 프리팹, 생성할 개수
+        public Wave[] waves;
+
         //적 프리팹
         public GameObject enemyPrefab;
+
         // 적 스폰위치
         public Transform startPoint;
-
 
 
         //타이머
@@ -34,11 +40,16 @@ namespace MyDefence
             //초기화
             countdown = 3f;
             waveCount = 0;
+            enemyAlive = 0;
         }
 
         // Update is called once per frame
         void Update()
         {
+            //현재 맵에 enemy가 있는지 체크
+            if (enemyAlive > 0)
+                return;
+
             //타이머구현
             countdown += Time.deltaTime;
             if(countdown >= waveTimer)
@@ -72,7 +83,7 @@ namespace MyDefence
         }
         void SpawnEnemy()
         {
-            //시작 지점에 enemy 한마리 스폰
+            enemyAlive++;
             Instantiate(enemyPrefab, startPoint.position, Quaternion.identity);
         }
     }

@@ -12,6 +12,9 @@ namespace MyDefence
         //체력 초기값
         [SerializeField]private float startHealth = 100f;
 
+        //죽음 체크
+        private bool isDeath = false;
+
         //이동 속도
         public float moveSpeed = 5f;
 
@@ -80,6 +83,10 @@ namespace MyDefence
                 //플레이어의 라이프 소모
                 PlayerStats.UseLives(1);
 
+                //Enemy 카운팅
+                WaveManager.enemyAlive--;
+                Debug.Log($"enemyAlive: {WaveManager.enemyAlive}");
+
                 Destroy(this.gameObject);
                 return;
             }
@@ -96,8 +103,8 @@ namespace MyDefence
             //체력바 UI
             healthBarImage.fillAmount = health / startHealth;
 
-            //죽음 체크
-            if (health <= 0f)
+            //죽음 체크, 두번 죽는것 체크
+            if (health <= 0f && !isDeath)
             {
                 Die();
             }
@@ -106,6 +113,8 @@ namespace MyDefence
         //죽음 처리
         private void Die()
         {
+            //죽음 체크
+            isDeath = true;
             //보상, 벌
             //리워드 50gold 지급
             PlayerStats.AddMoney(rewardGold);
@@ -114,6 +123,10 @@ namespace MyDefence
             //죽는 파티클 이펙트 만들어서 처리
             GameObject effectGo = Instantiate(deathEffectPrefab, this.transform.position, Quaternion.identity);
             Destroy(effectGo, 2f);
+
+            //Enemy 카운팅
+            WaveManager.enemyAlive--;
+            Debug.Log($"enemyAlive: {WaveManager.enemyAlive}");
 
             //킬
             Destroy(this.gameObject, 0f);
