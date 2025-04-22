@@ -15,6 +15,9 @@ namespace MyDefence
         //죽음 체크
         private bool isDeath = false;
 
+        //도착 체크
+        private bool isArrive = false;
+
         //이동 속도
         public float moveSpeed = 5f;
 
@@ -40,6 +43,9 @@ namespace MyDefence
 
         #endregion
 
+        #region Property
+        public bool IsArrive => isArrive;
+        #endregion
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -54,6 +60,8 @@ namespace MyDefence
         // Update is called once per frame
         void Update()
         {
+            if (isArrive) return;
+
             //이동 구현
             Vector3 dir = target.position - this.transform.position;
             transform.Translate(dir.normalized * Time.deltaTime * moveSpeed, Space.World);
@@ -79,15 +87,18 @@ namespace MyDefence
             //종점 도착 판정
             if (wayPointIndex == WayPoints.wayPoints.Length-1)
             {
-                Debug.Log("종점 도차쿠");
+                //종점 도착 체크
+                isArrive = true;
                 //플레이어의 라이프 소모
                 PlayerStats.UseLives(1);
 
                 //Enemy 카운팅
                 WaveManager.enemyAlive--;
                 Debug.Log($"enemyAlive: {WaveManager.enemyAlive}");
+               
+                //공격 VFX, SFX
 
-                Destroy(this.gameObject);
+                Destroy(this.gameObject,1f);
                 return;
             }
             wayPointIndex++;
@@ -97,6 +108,8 @@ namespace MyDefence
         //대미지 처리
         public void TakeDamage(float damage)
         {
+            if (isArrive) return;
+            
             health -= damage;
 
             //대미지 효과(VFX, SFX)

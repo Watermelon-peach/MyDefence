@@ -56,6 +56,14 @@ namespace MyDefence
 
             foreach (var enemy in enemies)
             {
+                //종점에 도착한 enemy 제거
+                Enemy arriveEnemy = enemy.GetComponent<Enemy>();
+                if(arriveEnemy != null && arriveEnemy.IsArrive)
+                {
+                    continue;
+                }
+
+
                 float distance = Vector3.Distance(this.transform.position, enemy.transform.position);
                 if (distance < minDistance)
                 {
@@ -65,6 +73,7 @@ namespace MyDefence
             }
 
             //Debug.Log($"최소거리: {minDistance}");
+            //가장 가까운 적이고, 공격 거리 안에 있어야 되고, 종점에 도착하지 않았어야 한다
             if (nearEnemy != null && minDistance <= attackRange)
             {
                 target = nearEnemy.transform;
