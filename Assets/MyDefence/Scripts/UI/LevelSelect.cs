@@ -12,6 +12,11 @@ namespace MyDefence
         //레벨 선택 버튼s
         public Transform contents;      //레벨선택 버튼들의 부모 오브젝트
         private Button[] levelButtons;
+
+        //자동 스크롤 계산
+        public RectTransform scrollRect;
+        public RectTransform contentsRect;
+        public Scrollbar scrollbar;
         #endregion
 
         private void Start()
@@ -32,6 +37,26 @@ namespace MyDefence
                     levelButtons[i].interactable = false;
                 }
             }
+
+            //현재 플레이할 레벨로 자동 스크롤
+            float scrollHeight = scrollRect.rect.height;
+            float contentsHeight = 110 + (levelButtons.Length - 1) / 5 * (110 + 6);
+            //전체 스크롤량
+            float dHeight = contentsHeight - scrollHeight;
+            if(dHeight >0)
+            {
+                //현재 플레이할 레벨에 따른 스크롤 높이
+                float nowLevelHeight = (nowLevel - 1) / 5 * (110 + 6);
+                if (nowLevelHeight < dHeight)
+                {
+                    scrollbar.value = 1 - (nowLevelHeight / dHeight);
+                }
+                else
+                {
+                    scrollbar.value = 0f;
+                }
+                
+            }
         }
         //레벨 버튼 클릭 시 매개변수로 받은 씬 이름으로 씬 이동한다
         public void LevelButtonSelect(string sceneName)
@@ -45,6 +70,8 @@ namespace MyDefence
         {
             fader.FadeTo(sceneToLoad);
         }
+
+        
     }
 }
 

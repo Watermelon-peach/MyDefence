@@ -94,7 +94,7 @@ namespace MyDefence
 
                 //Enemy 카운팅
                 WaveManager.enemyAlive--;
-                Debug.Log($"enemyAlive: {WaveManager.enemyAlive}");
+                //Debug.Log($"enemyAlive: {WaveManager.enemyAlive}");
                
                 //공격 VFX, SFX
 
@@ -139,7 +139,7 @@ namespace MyDefence
 
             //Enemy 카운팅
             WaveManager.enemyAlive--;
-            Debug.Log($"enemyAlive: {WaveManager.enemyAlive}");
+            //Debug.Log($"enemyAlive: {WaveManager.enemyAlive}");
 
             //킬
             Destroy(this.gameObject, 0f);

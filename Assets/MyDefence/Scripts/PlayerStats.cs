@@ -58,7 +58,7 @@ namespace MyDefence
         {
             if (money < amount)
             {
-                Debug.Log("돈 없다 이 놈아");
+                //Debug.Log("돈 없다 이 놈아");
                 return false;
             }
             money -= amount;

@@ -141,7 +141,7 @@ namespace MyDefence
             waveInfo.SetActive(true);
 
             waveNumber.text = "WAVE " + (waveCount + 1);
-            Debug.Log("웨이브 시작");
+            //Debug.Log("웨이브 시작");
             StartCoroutine(SpawnWave());
         }
     }

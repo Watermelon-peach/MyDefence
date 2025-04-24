@@ -5,7 +5,7 @@ namespace MyDefence
     public class GameManager : MonoBehaviour
     {
         #region Field
-        [SerializeField] private bool isCheat = false;
+        private bool isCheat = false;
 
         //게임오버
         //UI
@@ -14,6 +14,8 @@ namespace MyDefence
 
         //레벨클리어
         [SerializeField] private int unlockLevel = 2;
+        //UI
+        public GameObject levelClearUI;
         #endregion
 
         #region Property
@@ -60,23 +62,25 @@ namespace MyDefence
         {
             isGameOver = true;
             gameOverUI.SetActive(true);
+            //levelClearUI.SetActive(true);
         }
 
         //레벨 클리어 처리
         public void LevelClear()
         {
-            Debug.Log("LevelClear");
+            //Debug.Log("LevelClear");
             //데이터 처리 - 보상, 다음 플레이할 레벨 저장
             int nowLevel = PlayerPrefs.GetInt("NowLevel", 1);
             if (unlockLevel > nowLevel)
             {
                 PlayerPrefs.SetInt("NowLevel", unlockLevel);
             }
-            
+
             //...
 
             //UI 보여주기, VFX, SFX 효과
-            Debug.Log("레벨 클리어");
+            levelClearUI.SetActive(true);
+            //Debug.Log("레벨 클리어");
         }
 
         //Cheating
