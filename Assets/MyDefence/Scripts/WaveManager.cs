@@ -34,6 +34,9 @@ namespace MyDefence
         public TextMeshProUGUI countText;
         private int enemyCount;
         public TextMeshProUGUI waveNumber;
+
+        //게임 매니저
+        public GameManager gameManger;
         #endregion
 
 
@@ -55,12 +58,24 @@ namespace MyDefence
             {
                 // 현재 살아있는 적의 개수 / 웨이브에서 생성할 개수
                 countText.text = enemyAlive.ToString() + "/" + enemyCount.ToString();
+                return;
             }
-            else if(waveInfo.activeSelf)//enemyAlive == 0
+            //enemyAlive == 0
+            //레벨 클리어 체크
+            if (waveCount >= waves.Length)
+            {
+                gameManger.LevelClear();
+                enabled = false;            //WaveManager 클래스의 객체 기능 비활성화
+                return;
+            }
+
+            //Start UI 세팅
+            if (waveInfo.activeSelf)
             {
                 startButton.SetActive(true);
                 waveInfo.SetActive(false);
             }
+                
             
 
             /*//타이머구현
@@ -100,11 +115,7 @@ namespace MyDefence
 
             waveCount++;
 
-            if (waveCount >= waves.Length)
-            {
-                Debug.Log("Wave Clear");
-                enabled = false;            //WaveManager 클래스의 객체 기능 비활성화
-            }
+            
 
             //정석
             /*if (waveCount <waves.Length-1)

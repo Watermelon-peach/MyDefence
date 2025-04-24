@@ -5,14 +5,10 @@ namespace MyDefence
     public class MainMenu : MonoBehaviour
     {
         #region Field
-        [SerializeField] private string sceneToLoad = "PlayScene";
+        [SerializeField] private string sceneToLoad = "LevelSelect";
         public SceneFader fader;
         #endregion
 
-        private void Start()
-        {
-            
-        }
 
         public void Play()
         {
@@ -21,10 +17,14 @@ namespace MyDefence
 
         public void Quit()
         {
+            //cheating
+            PlayerPrefs.DeleteAll();
             Debug.Log("Game Quit!!");
             //Unity 에디터에서 명령 무시, 빌드버전에서는 구동
             Application.Quit();
         }
+
+      
 
     }
 

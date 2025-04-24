@@ -5,13 +5,15 @@ namespace MyDefence
     public class GameManager : MonoBehaviour
     {
         #region Field
-        [SerializeField]private bool isCheat = false;
+        [SerializeField] private bool isCheat = false;
 
         //게임오버
         //UI
         public GameObject gameOverUI;
-
         private static bool isGameOver = false;
+
+        //레벨클리어
+        [SerializeField] private int unlockLevel = 2;
         #endregion
 
         #region Property
@@ -60,7 +62,22 @@ namespace MyDefence
             gameOverUI.SetActive(true);
         }
 
-       
+        //레벨 클리어 처리
+        public void LevelClear()
+        {
+            Debug.Log("LevelClear");
+            //데이터 처리 - 보상, 다음 플레이할 레벨 저장
+            int nowLevel = PlayerPrefs.GetInt("NowLevel", 1);
+            if (unlockLevel > nowLevel)
+            {
+                PlayerPrefs.SetInt("NowLevel", unlockLevel);
+            }
+            
+            //...
+
+            //UI 보여주기, VFX, SFX 효과
+            Debug.Log("레벨 클리어");
+        }
 
         //Cheating
         //M키를 누르면 10만 골드 지급

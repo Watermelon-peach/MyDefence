@@ -1598,6 +1598,7 @@ MonoBehaviour:
   waveInfo: {fileID: 1430129550}
   countText: {fileID: 1590271256}
   waveNumber: {fileID: 1988160914}
+  gameManger: {fileID: 699156636}
 --- !u!4 &185169612
 Transform:
   m_ObjectHideFlags: 0
@@ -4427,6 +4428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCheat: 1
   gameOverUI: {fileID: 1714876508}
+  unlockLevel: 3
 --- !u!1001 &699220532
 PrefabInstance:
   m_ObjectHideFlags: 0

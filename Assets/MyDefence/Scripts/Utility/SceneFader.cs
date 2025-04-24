@@ -55,11 +55,14 @@ namespace MyDefence
             }
 
             //씬 이동
-            SceneManager.LoadScene(sceneName);
+            if (sceneName != "")
+            {
+                SceneManager.LoadScene(sceneName);
+            }
         }
 
         //다른 씬으로 이동 시 FadeOut 효과 후 LoadScene으로 이동
-        public void FadeTo(string sceneName)
+        public void FadeTo(string sceneName = "")
         {
             StartCoroutine(FadeOut(sceneName));
         }
