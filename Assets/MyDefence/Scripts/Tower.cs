@@ -10,7 +10,7 @@ namespace MyDefence
         public float attackRange = 7f;
 
         protected Transform target;
-        protected Enemy targetEnemy;
+        protected IDamageable targetEnemy;
 
         //Enemy tag
         public string enemyTag = "Enemy";
@@ -48,15 +48,13 @@ namespace MyDefence
 
             GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
 
-
-
             //최소 거리일 때의 적 구하기
             float minDistance = float.MaxValue;
             GameObject nearEnemy = null;
 
             foreach (var enemy in enemies)
             {
-                //종점에 도착한 enemy 제거
+                //종점에 도착한 enemy 탐색에서 제거
                 Enemy arriveEnemy = enemy.GetComponent<Enemy>();
                 if(arriveEnemy != null && arriveEnemy.IsArrive)
                 {
@@ -77,7 +75,7 @@ namespace MyDefence
             if (nearEnemy != null && minDistance <= attackRange)
             {
                 target = nearEnemy.transform;
-                targetEnemy = target.GetComponent<Enemy>();
+                targetEnemy = target.GetComponent<IDamageable>();
             }
             else
             {

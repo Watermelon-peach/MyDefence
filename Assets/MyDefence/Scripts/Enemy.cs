@@ -2,10 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace MyDefence
 {
-    public class Enemy : MonoBehaviour
+    //적의 전투(체력, 대미지 처리)를 관리하는 클래스
+    public class Enemy : MonoBehaviour, IDamageable
     {
         //필드
         #region Field
+        private EnemyMove enemyMove;
+
         //체력
         private float health;
         
@@ -14,21 +17,6 @@ namespace MyDefence
 
         //죽음 체크
         private bool isDeath = false;
-
-        //도착 체크
-        private bool isArrive = false;
-
-        //이동 속도
-        public float moveSpeed = 5f;
-
-        //이동 속도 - origin
-        private float startMoveSpeed;
-
-        private Vector3 targetPosition;
-        //wayPoint 오브젝트의 트랜스폼 객체
-        private Transform target;
-        //wayPoints 배열의 인덱스
-        private int wayPointIndex = 0;
 
         //리워드 골드
         [SerializeField]private int rewardGold = 50;
@@ -44,71 +32,34 @@ namespace MyDefence
         #endregion
 
         #region Property
-        public bool IsArrive => isArrive;
+        public bool IsArrive => enemyMove.IsArrive;
         #endregion
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            //참조
+            enemyMove = GetComponent<EnemyMove>();
+
             //초기화
-            wayPointIndex = 0;
-            target = WayPoints.wayPoints[wayPointIndex];
             health = startHealth;
-            startMoveSpeed = moveSpeed;
-            isTakeDamage = false;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (isArrive) return;
-
-            //이동 구현
-            Vector3 dir = target.position - this.transform.position;
-            transform.Translate(dir.normalized * Time.deltaTime * moveSpeed, Space.World);
-
-            //target 도착 판정
-            float distance = Vector3.Distance(target.position, this.transform.position);
-            if (distance <= 0.1f)
-            {
-               
-                //다음 타겟 셋팅
-                GetNextTarget();
-            }
-
-            //속도 원복
-            moveSpeed = startMoveSpeed;
+            
 
            
         }
 
         //다음 타겟 포지션 얻어오기
-        void GetNextTarget()
-        {
-            //종점 도착 판정
-            if (wayPointIndex == WayPoints.wayPoints.Length-1)
-            {
-                //종점 도착 체크
-                isArrive = true;
-                //플레이어의 라이프 소모
-                PlayerStats.UseLives(1);
-
-                //Enemy 카운팅
-                WaveManager.enemyAlive--;
-                //Debug.Log($"enemyAlive: {WaveManager.enemyAlive}");
-               
-                //공격 VFX, SFX
-
-                Destroy(this.gameObject,1f);
-                return;
-            }
-            wayPointIndex++;
-            target = WayPoints.wayPoints[wayPointIndex];   
-        }
+        
 
         //대미지 처리
         public void TakeDamage(float damage)
         {
-            if (isArrive) return;
+            if (enemyMove.IsArrive) return;
             
             health -= damage;
 
@@ -148,7 +99,7 @@ namespace MyDefence
         //매개변수로 입력받은 감속률만큼 속도 감속
         public void Slow(float rate)
         {
-            moveSpeed = startMoveSpeed * (1 - rate);
+            enemyMove.moveSpeed = enemyMove.StartMoveSpeed * (1 - rate);
         }
     }
 
